@@ -1,112 +1,37 @@
-# InvenTrack Pro — Multi-Tenant Inventory & Supplier Management System
+InvenTrack Pro
 
-## Quick Start (XAMPP)
+An enterprise-grade multi-tenant inventory and supplier management system designed to handle structured supply chains, role-based workflows, and automated procurement logic.
 
-### Step 1 — Copy project to XAMPP htdocs
-Copy the entire `Collaborative_project/` folder to your XAMPP `htdocs` directory:
-```
-C:\xampp\htdocs\Collaborative_project\
-```
+InvenTrack Pro isolates commercial data strictly by tenant while providing full CRUD control over stock lifecycles, automated purchase order generation, and real-time interactive dashboards.
 
-### Step 2 — Start XAMPP Services
-Start **Apache** and **MySQL** in the XAMPP Control Panel.
+Key System Features
 
-### Step 3 — Run the Installer
-Open your browser and navigate to:
-```
-http://localhost/Collaborative_project/install.php
-```
-This will:
-- Create the `inventory_system_db` database
-- Install all 7 tables with foreign key constraints
-- Seed 2 tenants, 4 users, suppliers, products, orders, and stock history
-- Generate correct bcrypt password hashes
+Robust Multi-Tenancy: All records are partitioned securely using unique tenant_id scopes. Cross-tenant data leaks are structurally prevented at the database query level.
+Role-Based Access Control (RBAC): Distinct administrative profiles handle critical mutations (full CRUD and destructive operations), while Staff accounts are restricted to standard monitoring and stock reconciliation updates.
+Automated Purchase Orders (Auto-PO): The platform tracks safety thresholds programmatically. When inventory falls below designated reorder levels, draft purchase orders are generated automatically to prevent stockouts.
+Live Interactive Search: Utilizes a debounced native Fetch API interface for lightning-fast product filtering and inventory catalog inquiries without refreshing pages.
+Native Analytics Engine: Includes a pure HTML5 Canvas analytical plotting grid featuring hardware-accelerated animations, multi-tenant trend parsing, and dark-theme persistence.
 
-### Step 4 — Log In
-Navigate to:
-```
-http://localhost/Collaborative_project/
-```
+Technical Stack Architecture
 
-## Demo Credentials
+Frontend Environment: Vanilla HTML5, CSS3 Custom Properties (Persisted Theme Matrix), JavaScript (ES6+ Engine)
+Server Runtime: Apache / PHP 8.1+ (Strict Data Typing Enforcement)
+Relational Database: MySQL 8.0+ (InnoDB Engine, Cascading Constraints, Indexed Foreign Vectors)
+Security Mechanisms: PDO Parameterized Preparations, Bcrypt Hashing (Work Factor 12), Cryptographically Secure Session Regeneative Matrices, httponly & SameSite=Strict Cookie Parameters
 
-| Username | Password   | Role  | Tenant              |
-|----------|------------|-------|---------------------|
-| admin1   | Admin@123  | Admin | NovaTech Solutions  |
-| staff1   | Staff@123  | Staff | NovaTech Solutions  |
-| admin2   | Admin@123  | Admin | Meridian Supplies   |
-| staff2   | Staff@123  | Staff | Meridian Supplies   |
+Workspace Directory Structure
 
-> **Note:** On the login page, click any demo account box to auto-fill credentials.
-
----
-
-## Features
-
-| Feature | Details |
-|---|---|
-| Multi-tenancy | All data partitioned by `tenant_id` — tenants cannot see each other's data |
-| RBAC | Admin: full CRUD, destructive ops. Staff: read + stock update only |
-| Live Search | Debounced Fetch API search on product list — no page reloads |
-| Auto PO | Low-stock products trigger draft Purchase Orders automatically |
-| Canvas Charts | Pure HTML5 Canvas line/area chart with animation, dark mode support |
-| Dark Mode | CSS custom properties + `data-theme` toggle, persisted in localStorage |
-| Export | Print-ready Purchase Order HTML page (Ctrl+P → Save as PDF) |
-| Stock History | Every change logged to `stock_history` for audit trail and charting |
-
----
-
-## Project Structure
-
-```
 Collaborative_project/
-├── index.php              ← Entry point
-├── login.php              ← Login page
-├── logout.php             ← Session destroy
-├── install.php            ← One-time DB setup (delete after use!)
+├── index.php              # Secure Application Router & Entry Gate
+├── login.php              # Session Initiation and Anti-Fixation Core
+├── logout.php             # Session Purge & State Destruction
+├── install.php            # One-Time Automated Database Provisioner
 ├── config/
-│   ├── db.php             ← PDO singleton
-│   └── constants.php      ← App-wide constants
-├── controllers/
-│   ├── AuthController.php
-│   ├── DashboardController.php
-│   ├── ProductController.php
-│   ├── SupplierController.php
-│   ├── OrderController.php
-│   └── StockController.php
-├── api/
-│   ├── products.php       ← JSON: live search
-│   ├── stock_chart.php    ← JSON: chart data
-│   ├── low_stock.php      ← JSON: alert feed
-│   └── export.php         ← Print PO layout
-├── views/
-│   ├── layout/
-│   │   ├── header.php
-│   │   └── footer.php
-│   ├── dashboard.php
-│   ├── products.php
-│   ├── suppliers.php
-│   ├── orders.php
-│   └── stock_update.php
-├── assets/
-│   ├── css/
-│   │   ├── main.css       ← Design system
-│   │   ├── dashboard.css  ← KPI/chart/alerts
-│   │   └── theme.css      ← Login + print
-│   └── js/
-│       ├── app.js         ← Theme, sidebar, toasts
-│       ├── live_search.js ← Fetch API search
-│       └── charts.js      ← Canvas chart renderer
+│   ├── db.php             # PDO Singleton Connection Core
+│   └── constants.php      # Global Application Declarations
+├── controllers/           # Operational Process Controllers (Auth, Product, Orders)
+├── api/                   # Async Fetch JSON Endpoints & Export Layout Drivers
+├── views/                 # Presentation Layouts & Restricted Workflow Panels
+├── assets/                # CSS Core Architecture, Custom Themes & Canvas Render Engine
 └── database/
-    └── schema.sql         ← Full DDL + seed data
-```
-
----
-
-## Security Notes
-- All SQL uses PDO prepared statements — SQL injection proof
-- Passwords use `password_hash(PASSWORD_BCRYPT, ['cost' => 12])`
-- Session uses `httponly`, `samesite=Strict` cookie flags
-- Session ID regenerated on login (anti-fixation)
-- Multi-tenancy enforced via `tenant_id` scoping on ALL queries
-- **Delete `install.php` after first run**
+    └── schema.sql         # Relational Constraints Layout & Base Seeds
