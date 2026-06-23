@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+define('APP_NAME',    'InvenTrack Pro');
+define('APP_VERSION', '1.0.0');
+define('APP_ROOT',    dirname(__DIR__));
+define('SESSION_USER_ID',   'auth_user_id');
+define('SESSION_TENANT_ID', 'auth_tenant_id');
+define('SESSION_ROLE',      'auth_role');
+define('SESSION_USERNAME',  'auth_username');
+define('SESSION_COMPANY',   'auth_company');
+define('ROLE_ADMIN', 'admin');
+define('ROLE_STAFF', 'staff');
+define('ORDER_STATUS_DRAFT',     'draft');
+define('ORDER_STATUS_PENDING',   'pending');
+define('ORDER_STATUS_ORDERED',   'ordered');
+define('ORDER_STATUS_RECEIVED',  'received');
+define('ORDER_STATUS_CANCELLED', 'cancelled');
+define('ORDER_STATUSES', ['draft','pending','ordered','received','cancelled']);
+define('REORDER_MULTIPLIER', 2);
+define('EXPORT_COMPANY_ADDRESS', '1 Enterprise Way, Business Park');
+define('EXPORT_COMPANY_PHONE',   '+1 (800) 555-9999');
+define('EXPORT_COMPANY_EMAIL',   'orders@inventrack.io');
+define('ITEMS_PER_PAGE', 20);
+define('CHART_DAYS', 30);
+define('ERR_UNAUTHORIZED',  'You do not have permission to perform this action.');
+define('ERR_NOT_FOUND',     'The requested resource was not found.');
+define('ERR_SERVER',        'An unexpected server error occurred. Please try again.');
+define('ERR_INVALID_INPUT', 'Invalid or missing input. Please review your submission.');
