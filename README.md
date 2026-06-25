@@ -21,22 +21,6 @@ InvenTrack Pro isolates commercial data strictly by tenant while providing full 
 * **Relational Database:** MySQL 8.0+ (InnoDB Engine, Cascading Constraints, Indexed Foreign Vectors)
 * **Security Mechanisms:** PDO Parameterized Preparations, Bcrypt Hashing (Work Factor 12), Cryptographically Secure Session Regeneative Matrices, `httponly` & `SameSite=Strict` Cookie Parameters.
 
----
+* 
 
-## Workspace Directory Structure
-
-```text
-Collaborative_project/
-├── index.php              # Secure Application Router & Entry Gate
-├── login.php              # Session Initiation and Anti-Fixation Core
-├── logout.php             # Session Purge & State Destruction
-├── install.php            # One-Time Automated Database Provisioner
-├── config/
-│   ├── db.php             # PDO Singleton Connection Core
-│   └── constants.php      # Global Application Declarations
-├── controllers/           # Operational Process Controllers (Auth, Product, Orders)
-├── api/                   # Async Fetch JSON Endpoints & Export Layout Drivers
-├── views/                 # Presentation Layouts & Restricted Workflow Panels
-├── assets/                # CSS Core Architecture, Custom Themes & Canvas Render Engine
-└── database/
-    └── schema.sql         # Relational Constraints Layout & Base Seeds
+<img width="1517" height="820" alt="image" src="https://github.com/user-attachments/assets/e74fe4fe-a1aa-47ba-9a12-2b73735d23dc" />
